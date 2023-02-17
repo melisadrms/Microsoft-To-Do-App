@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import GetDate from "./date-finder";
+import Burger from "./hamburger";
 function ToDo() {
   return (
     <div className="p-6">
@@ -40,6 +41,7 @@ function ToDo() {
         />
         <p className="self-center absolute ml-11 text-blue-500">Görev Ekle</p>
       </div>
+      <Burger />
     </div>
   );
 }
