@@ -1,13 +1,14 @@
 import { Icon } from "@iconify/react";
-
-function Burger() {
+import { useState } from "react";
+function Burger({ handleClick }) {
   return (
-    <div className="bg-gray-600 absolute inset-y-12 left-0 w-52 p-6 ">
+    <div className="bg-white fixed inset-y-0 left-0 w-52 p-6 mt-12 ">
       <Icon
         icon="system-uicons:menu-hamburger"
         height="2rem"
         color="gray"
         className=" hover:shadow mb-5"
+        onClick={handleClick}
       />
       <div classname="flex">
         <Icon
@@ -59,7 +60,7 @@ function Burger() {
           className="ml-auto"
         />
       </div>
-      <div className="flex mt-72 gap-4">
+      <div className="flex mt-60 gap-4">
         <Icon icon="pepicons-pop:letter" inline={true} height="1.5rem" />
         <Icon icon="uil:schedule" inline={true} height="1.5rem" />
         <Icon icon="ri:group-line" inline={true} height="1.5rem" />

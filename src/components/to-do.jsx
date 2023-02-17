@@ -1,7 +1,14 @@
 import { Icon } from "@iconify/react";
 import GetDate from "./date-finder";
-import Burger from "./hamburger";
+import Burger from "./burger";
+import { useState } from "react";
+
 function ToDo() {
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+    open ? setOpen(false) : setOpen(true);
+  };
+
   return (
     <div className="p-6">
       <div className="flex">
@@ -11,6 +18,7 @@ function ToDo() {
             height="1.75rem"
             color="gray"
             className="self-center hover:shadow"
+            onClick={handleClick}
           />
           <p className="self-center ml-2 text-2xl">Günüm</p>
           <button className="text-gray-400 ml-5 self-center hover:shadow">
@@ -41,7 +49,7 @@ function ToDo() {
         />
         <p className="self-center absolute ml-11 text-blue-500">Görev Ekle</p>
       </div>
-      <Burger />
+      {open && <Burger id="sidebar" handleClick={handleClick} />}
     </div>
   );
 }
