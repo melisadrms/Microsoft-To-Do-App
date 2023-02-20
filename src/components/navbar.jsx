@@ -8,7 +8,10 @@ function navbar() {
       </div>
       <b className="self-center hover:underline">To Do</b>
       <div className="flex relative md:m-auto self-center ml-2">
-        <button className="bg-white md:w-96 md:h-8 rounded w-8 h-8"> </button>
+        <input
+          placeholder="Ara"
+          className="bg-white md:w-96 md:h-8 rounded w-8 h-8 placeholder-black-400 pl-8 text-slate-900"
+        ></input>
         <Icon
           icon="ant-design:search-outlined"
           color="#2564cf"
@@ -17,8 +20,8 @@ function navbar() {
           className="self-center absolute"
         />
       </div>
-      <div className="flex ">
-        <div className="flex place-content-center items-center h-12 w-12  hover:bg-blue-700  ">
+      <div className="flex">
+        <div className="flex place-content-center items-center h-12 w-12  hover:bg-blue-700 md:ml-auto ">
           <Icon icon="fluent-mdl2:settings" color="white" height="1rem" />
         </div>
         <div className="flex place-content-center items-center h-12 w-12  hover:bg-blue-700 ">

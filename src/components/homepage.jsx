@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import GetDate from "./date-finder";
+import GetDate from "./dateFinder";
 import Burger from "./burger";
 import { useState } from "react";
 
@@ -13,10 +13,10 @@ function ToDo() {
     <div className="p-6 z-2  ">
       <div
         className={` transition duration-500 ease-out  ${
-          open ? "translate-x-64" : "block"
+          open ? "translate-x-64 w-4/5" : "block"
         }`}
       >
-        <div className="flex shrink">
+        <div className="flex">
           <div className="flex">
             <Icon
               icon="system-uicons:menu-hamburger"
@@ -30,7 +30,7 @@ function ToDo() {
               ...
             </button>
           </div>
-          <div className={`flex ml-auto mr-4 hover:shadow`}>
+          <div className={`flex ml-auto mr-4 hover:shadow `}>
             <Icon icon="fluent:arrow-sort-20-regular" className="self-center" />
             <p className="text-gray-400 self-center p-2 hidden md:block">
               Sırala
@@ -45,14 +45,16 @@ function ToDo() {
         </div>
         <GetDate />
         <div className="flex self-center">
-          <button className="bg-white w-full rounded h-14 border shadow-lg shadow-gray-500/50 relative"></button>
+          <input
+            placeholder="Görev Ekle"
+            className="bg-white w-full rounded h-14 border shadow-lg shadow-gray-500/50 placeholder-gray-400 pl-12 "
+          ></input>
           <Icon
             icon="ph:plus-thin"
             height="1.5rem"
             color="#2564cf"
             className="self-center absolute ml-3"
           />
-          <p className="self-center absolute ml-11 text-blue-500">Görev Ekle</p>
         </div>
       </div>
       <div>{open && <Burger id="sidebar" handleClick={handleClick} />}</div>

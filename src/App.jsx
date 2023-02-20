@@ -1,5 +1,5 @@
 import Navbar from "./components/navbar";
-import ToDo from "./components/to-do";
+import ToDo from "./components/homepage";
 
 function App() {
   return (
