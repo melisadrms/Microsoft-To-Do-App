@@ -1,10 +1,15 @@
 import { Icon } from "@iconify/react";
 
-function ToDo({ todo }) {
+function ToDo({ todo, toggleComplete }) {
   return (
     <li>
       <div className="flex bg-[#f0f9ff] mt-4 border rounded h-12">
-        <input type="checkbox" className="rounded-full m-3 " />
+        <input
+          type="checkbox"
+          className="rounded-full m-3 "
+          checked={todo.completed ? "checked" : ""}
+          onChange={() => toggleComplete(todo)}
+        />
         <p className="self-center">{todo.text}</p>
         <Icon
           icon="bi:star"
