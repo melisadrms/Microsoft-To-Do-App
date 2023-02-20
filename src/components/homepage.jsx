@@ -3,7 +3,7 @@ import GetDate from "./dateFinder";
 import Burger from "./burger";
 import { useState } from "react";
 
-function ToDo() {
+function Homepage() {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     open ? setOpen(false) : setOpen(true);
@@ -61,4 +61,4 @@ function ToDo() {
     </div>
   );
 }
-export default ToDo;
+export default Homepage;

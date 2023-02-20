@@ -1,11 +1,11 @@
 import Navbar from "./components/navbar";
-import ToDo from "./components/homepage";
+import Homepage from "./components/homepage";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <ToDo />
+      <Homepage />
     </div>
   );
 }
