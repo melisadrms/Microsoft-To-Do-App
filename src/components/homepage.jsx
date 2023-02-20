@@ -1,22 +1,50 @@
 import { Icon } from "@iconify/react";
 import GetDate from "./dateFinder";
 import Burger from "./burger";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ToDo from "./toDo";
+import Detail from "./toDoDetail";
+import { collection, query, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase";
 
 function Homepage() {
   const [open, setOpen] = useState(false);
-  const [todos, setTodos] = useState(["todo1"]);
+  const [todos, setTodos] = useState([]);
+  const [detail, setDetail] = useState(false);
+  const [add, setAdd] = useState(false);
+
+  useEffect(() => {
+    const q = query(collection(db, "todos"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      let todosArr = [];
+      querySnapshot.forEach((doc) => {
+        todosArr.push({ ...doc.data(), id: doc.id });
+      });
+      setTodos(todosArr);
+    });
+    return () => unsubscribe();
+  }, []);
+
   const handleClick = () => {
     open ? setOpen(false) : setOpen(true);
+  };
+
+  const handleDetail = () => {
+    detail ? setDetail(false) : setDetail(true);
+  };
+
+  const handleAdd = () => {
+    add ? setAdd(false) : setAdd(true);
   };
 
   return (
     <div className="p-6 z-2  ">
       <div
-        className={` transition duration-500 ease-out  ${
-          open ? "md:translate-x-64 md:w-4/5 w-full " : "block"
-        }`}
+        className={`transition duration-1000 ease-in-out transform 
+        ${open ? "md:translate-x-64 md:w-4/5 w-full " : "block"}
+        ${detail ? " md:w-9/12 w-full " : "block"}}
+        ${open && detail ? "md:w-6/12 w-full ml-12" : "block"}
+        `}
       >
         <div className="flex">
           <div className="flex">
@@ -48,6 +76,7 @@ function Homepage() {
         <GetDate />
         <div className="flex self-center">
           <input
+            onClick={handleAdd}
             placeholder="Görev Ekle"
             className="bg-white w-full rounded h-14 border shadow-lg shadow-gray-500/20 placeholder-gray-400 pl-12 "
           ></input>
@@ -58,7 +87,11 @@ function Homepage() {
             className="self-center absolute ml-3"
           />
         </div>
-        <div className="bg-[#ffffff] border rounded shadow-gray-500/100 h-10 flex">
+        <div
+          className={`bg-[#ffffff] border rounded shadow-gray-500/100 h-10 ${
+            add ? "flex" : "hidden"
+          }`}
+        >
           <Icon
             icon="uil:schedule"
             color="#71717a"
@@ -81,13 +114,14 @@ function Homepage() {
             ekle
           </button>
         </div>
-        <ul>
+        <ul onClick={handleDetail}>
           {todos.map((todo, index) => (
             <ToDo key={index} todo={todo} />
           ))}
         </ul>
       </div>
       <div>{open && <Burger id="sidebar" handleClick={handleClick} />}</div>
+      <div>{detail && <Detail id="detail" handleDetail={handleDetail} />}</div>
     </div>
   );
 }

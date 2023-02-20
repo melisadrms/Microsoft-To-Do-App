@@ -1,7 +1,9 @@
 import { Icon } from "@iconify/react";
 function Burger({ handleClick }) {
   return (
-    <div className={`bg-white fixed inset-y-0 left-0 p-6 mt-12 w-64 shadow-lg`}>
+    <div
+      className={`bg-white fixed inset-y-0 left-0 p-6 mt-12 w-64 shadow-lg transition duration-1000 ease-in-out transform`}
+    >
       <Icon
         icon="system-uicons:menu-hamburger"
         height="2rem"
