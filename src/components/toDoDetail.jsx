@@ -1,13 +1,13 @@
 import { Icon } from "@iconify/react";
 
-function Detail({ handleDetail }) {
+function Detail({ handleDetail, deleteTodo, todo }) {
   return (
     <div
       className={`bg-[#f8fafc] fixed inset-y-0 right-0 p-6 mt-12 w-3/12 shadow-lg `}
     >
       <div className="bg-white flex h-12 rounded">
         <input type="checkbox" height="1rem" className="ml-4" />
-        <p className=" ml-3 self-center ">todo1</p>
+        <p className=" ml-3 self-center ">{todo.text}</p>
         <Icon
           icon="bi:star"
           className="ml-auto self-center mr-3"
@@ -96,13 +96,14 @@ function Detail({ handleDetail }) {
           icon="material-symbols:arrow-back-rounded"
           color="#71717a"
           className="self-center"
+          onClick={handleDetail}
         />
         <p className="self-center text-xs text-gray-500"> Bugün oluşturuldu</p>
         <Icon
           icon="octicon:trash-24"
           color="#71717a"
           className="self-center"
-          onClick={handleDetail}
+          onClick={() => deleteTodo(todo.id)}
         />
       </div>
     </div>

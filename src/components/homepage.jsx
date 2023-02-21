@@ -11,6 +11,7 @@ import {
   updateDoc,
   doc,
   addDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -62,6 +63,10 @@ function Homepage() {
       completed: false,
     });
     setInput("");
+  };
+
+  const deleteTodo = async (id) => {
+    await deleteDoc(doc(db, "todos", id));
   };
 
   return (
@@ -153,8 +158,27 @@ function Homepage() {
         </ul>
       </div>
       <div>{open && <Burger id="sidebar" handleClick={handleClick} />}</div>
-      <div>{detail && <Detail id="detail" handleDetail={handleDetail} />}</div>
+
+      <div>
+        {todos.map(
+          (todo, index) =>
+            detail && <Detail key={index} todo={todo} deleteTodo={deleteTodo} />
+        )}
+      </div>
     </div>
   );
 }
 export default Homepage;
+
+{
+  /* <div>
+  {detail && (
+    <Detail
+      id="detail"
+      handleDetail={handleDetail}
+      deleteTodo={deleteTodo}
+      todo={todo}
+    />
+  )}
+</div> */
+}
